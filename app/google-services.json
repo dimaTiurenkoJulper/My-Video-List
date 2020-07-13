@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "370957546184",
+    "firebase_url": "https://myfirstappfome.firebaseio.com",
+    "project_id": "myfirstappfome",
+    "storage_bucket": "myfirstappfome.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370957546184:android:929c383aa33c48f9cb6bfd",
+        "android_client_info": {
+          "package_name": "com.example.myfirstappfome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370957546184-qs54frsnr0bhj0mcahk2drfh03bca7l8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-VSQI7ndkS74bpSZE5KwqmH-bZjazXyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370957546184-qs54frsnr0bhj0mcahk2drfh03bca7l8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

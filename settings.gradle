@@ -1,0 +1,2 @@
+rootProject.name='MyfirstAppFoME'
+include ':app'

@@ -1,0 +1,7 @@
+Index: app/src/main/java/com/example/myfirstappfome/ui/slideshow/SlideshowFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstappfome/ui/slideshow/SlideshowFragment.java	(date 1593539025846)
++++ app/src/main/java/com/example/myfirstappfome/ui/slideshow/SlideshowFragment.java	(date 1593539025846)

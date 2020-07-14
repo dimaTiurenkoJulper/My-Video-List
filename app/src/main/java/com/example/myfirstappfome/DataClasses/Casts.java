@@ -1,15 +1,17 @@
 package com.example.myfirstappfome.DataClasses;
 
-public class MyMovie {
-    protected String name;
-    protected String description;
-    protected int image;
-    public MyMovie(){
+public class Casts {
+    private String name;
+    private String description;
+    private int image;
+
+    public Casts() {
 
     }
-    public MyMovie(String name, String description, int image){
 
-        this.name=name;
+    public Casts(String name, String description, int image) {
+
+        this.name = name;
         this.description = description;
         this.image = image;
     }

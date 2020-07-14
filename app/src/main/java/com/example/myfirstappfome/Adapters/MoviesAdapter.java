@@ -1,4 +1,4 @@
-package com.example.myfirstappfome;
+package com.example.myfirstappfome.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myfirstappfome.Custom;
 import com.example.myfirstappfome.DataClasses.MyMovie;
+import com.example.myfirstappfome.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +17,19 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Adaptor extends RecyclerView.Adapter<Adaptor.ViewHolder> {
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     private LayoutInflater inflater;
     private List<MyMovie> movies;
     private Custom<View, MyMovie> clickAction;
 
-    public Adaptor(Context context, List<MyMovie> movies, Custom<View , MyMovie>  clickAction) {
+    public MoviesAdapter(Context context, List<MyMovie> movies, Custom<View , MyMovie>  clickAction) {
         this.movies = new ArrayList(movies);
         this.inflater = LayoutInflater.from(context);
         this.clickAction = clickAction;
     }
     @NonNull
     @Override
-    public Adaptor.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MoviesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.movie, parent, false);
         return new ViewHolder(view);
@@ -39,7 +41,7 @@ public class Adaptor extends RecyclerView.Adapter<Adaptor.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(Adaptor.ViewHolder holder, int position) {
+    public void onBindViewHolder(MoviesAdapter.ViewHolder holder, int position) {
         final MyMovie myMovie = movies.get(position);
         holder.imageView.setImageResource(myMovie.getImage());
         holder.nameView.setText(myMovie.getName());

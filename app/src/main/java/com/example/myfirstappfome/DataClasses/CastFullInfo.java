@@ -1,15 +1,13 @@
 package com.example.myfirstappfome.DataClasses;
 
-public class MyMovie {
-    protected String name;
-    protected String description;
-    protected int image;
-    public MyMovie(){
+public class CastFullInfo {
+    private String name;
+    private String Comment;
+    private String description;
+    private int image;
 
-    }
-    public MyMovie(String name, String description, int image){
-
-        this.name=name;
+    public CastFullInfo(String name, String description, int image) {
+        this.name = name;
         this.description = description;
         this.image = image;
     }
@@ -20,6 +18,14 @@ public class MyMovie {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getComment() {
+        return this.Comment;
+    }
+
+    public void setComment(String comment){
+        this.Comment = comment;
     }
 
     public String getDescription() {
@@ -37,4 +43,5 @@ public class MyMovie {
     public void setImage(int image) {
         this.image = image;
     }
+
 }

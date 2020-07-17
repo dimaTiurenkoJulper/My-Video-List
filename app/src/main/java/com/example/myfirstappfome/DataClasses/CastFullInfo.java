@@ -1,6 +1,8 @@
 package com.example.myfirstappfome.DataClasses;
 
-public class CastFullInfo {
+import java.io.Serializable;
+
+public class CastFullInfo implements Serializable {
     private String name;
     private String Comment;
     private String description;

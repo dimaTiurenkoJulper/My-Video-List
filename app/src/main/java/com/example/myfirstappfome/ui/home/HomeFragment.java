@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.myfirstappfome.Adapters.MoviesAdapter;
+import com.example.myfirstappfome.DataClasses.CastFullInfo;
 import com.example.myfirstappfome.DataClasses.MovieFullInfo;
 import com.example.myfirstappfome.DataClasses.MyMovie;
 import com.example.myfirstappfome.MovieInf;
@@ -26,7 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeFragment extends Fragment {
-    List<MyMovie> movieList = new ArrayList<MyMovie>();
+    private List<MyMovie> movieList = new ArrayList<>();
     private MoviesAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,13 +35,13 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         setInitialData();
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.list);
+        RecyclerView recyclerView = root.findViewById(R.id.list);
         // create adapter
-        adapter = new MoviesAdapter(getContext(), movieList , /* onClick in adapter*/(v, myMovie) -> {
-
-            MovieFullInfo movie = new MovieFullInfo(myMovie.getName(), myMovie.getDescription(),myMovie.getImage());
+        adapter = new MoviesAdapter(getContext(), movieList, /* onClick in adapter*/(v, myMovie) -> {
+            MovieFullInfo movie = new MovieFullInfo(myMovie.getName(), myMovie.getDescription(), myMovie.getImage());
+            movie.addCast(new CastFullInfo("onidzuka", " Pro" , R.drawable.avatar));
             Intent intent = new Intent(v.getContext(), MovieInf.class);
-            intent.putExtra("Movie",  movie);
+            intent.putExtra("movie", movie);
             startActivity(intent);
             Toast toast = Toast.makeText(v.getContext(), "Click !" + myMovie.getName(), Toast.LENGTH_LONG);
             toast.show();
@@ -49,31 +50,30 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-//0IKeAqYUdDw7CgwDJz4Hv67mYcrHdKPN4kTXVi6q
+
+    //0IKeAqYUdDw7CgwDJz4Hv67mYcrHdKPN4kTXVi6q
     //https://myfirstappfome.firebaseio.com/
     private void setInitialData() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(); // Key
 
-        MyMovie secmov = new MyMovie("Avatar", "film about avatar " , R.drawable.avatar);
-        // Attach listener
-        movieList.add(secmov);
+        // MyMovie secmov = new MyMovie("Avatar", "film about avatar " , R.drawable.avatar);
+        // movieList.add(secmov);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Retrieve latest value
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    MyMovie myMovie2 = postSnapshot.getValue(MyMovie.class);
-                    MyMovie myMovie = new MyMovie(postSnapshot.child("name").getValue(String.class),postSnapshot.child("description").getValue(String.class), R.drawable.avatar);
+                    MyMovie movie = postSnapshot.getValue(MyMovie.class);
                     Toast toast = Toast.makeText(getContext(), postSnapshot.child("name").getValue(String.class)
                             + postSnapshot.child("description").getValue(String.class)
-                            + R.drawable.avatar , Toast.LENGTH_LONG);
+                            + R.drawable.avatar, Toast.LENGTH_LONG);
                     toast.show();
-                    adapter.addItem(myMovie2);
-                    adapter.addItem(myMovie);
+                    adapter.addItem(movie);
                 }
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Error handling
             }
         });

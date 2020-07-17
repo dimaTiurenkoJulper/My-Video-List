@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myfirstappfome.CastFragment;
 import com.example.myfirstappfome.Custom;
+import com.example.myfirstappfome.DataClasses.CastFullInfo;
+import com.example.myfirstappfome.DataClasses.Casts;
 import com.example.myfirstappfome.DataClasses.MyMovie;
 import com.example.myfirstappfome.R;
 
@@ -17,39 +20,40 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
+public class CastsAdapter extends RecyclerView.Adapter<CastsAdapter.ViewHolder> {
     private LayoutInflater inflater;
-    private List<MyMovie> movies;
-    private Custom<View, MyMovie> clickAction;
+    private List<CastFullInfo> casts ;
+    private Custom<View, CastFullInfo> clickAction;
 
-    public MoviesAdapter(Context context, List<MyMovie> movies, Custom<View , MyMovie>  clickAction) {
-        this.movies = new ArrayList(movies);
+    public CastsAdapter(Context context, List<Casts> casts , Custom<View, CastFullInfo> clickAction) {
+        this.casts = new ArrayList(casts);
         this.inflater = LayoutInflater.from(context);
         this.clickAction = clickAction;
     }
+
     @NonNull
     @Override
-    public MoviesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CastsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.movie, parent, false);
-        return new ViewHolder(view);
+        return new CastsAdapter.ViewHolder(view);
     }
 
-    public void addItem(MyMovie movie) {
-        movies.add(movie);
-        notifyItemInserted(movies.size() - 1);
+    public void addItems(CastFullInfo cast) {
+        casts.add(cast);
+        notifyItemInserted(casts.size() - 1);
     }
 
     @Override
-    public void onBindViewHolder(MoviesAdapter.ViewHolder holder, int position) {
-        final MyMovie myMovie = movies.get(position);
-        holder.imageView.setImageResource(myMovie.getImage());
-        holder.nameView.setText(myMovie.getName());
-        holder.descriptionView.setText(myMovie.getDescription());
+    public void onBindViewHolder(CastsAdapter.ViewHolder holder, int position) {
+        final CastFullInfo myCast = casts.get(position);
+        holder.imageView.setImageResource(myCast.getImage());
+        holder.nameView.setText(myCast.getName());
+        holder.descriptionView.setText(myCast.getDescription());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickAction.get(v, myMovie);
+                clickAction.get(v, myCast);
 //                Intent intent = new Intent(v.getContext(),MovieInf.class);
 //                intent.putExtra("name", myMovie.getName());
 //                intent.putExtra("image", myMovie.getImage());
@@ -64,15 +68,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return casts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView imageView;
         final TextView nameView, descriptionView;
-        ViewHolder(View view){
+
+        ViewHolder(View view) {
             super(view);
-            imageView = (ImageView)view.findViewById(R.id.image);
+            imageView = (ImageView) view.findViewById(R.id.image);
             nameView = (TextView) view.findViewById(R.id.name);
             descriptionView = (TextView) view.findViewById(R.id.description);
         }

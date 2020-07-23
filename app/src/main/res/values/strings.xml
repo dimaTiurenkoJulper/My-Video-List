@@ -9,13 +9,15 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">VideoList</string>
-    <string name="menu_gallery">AddVideo</string>
-    <string name="menu_slideshow">FavoriteVideo</string>
-    <string name="GetRandom">GetRandomVideo</string>
+    <string name="menu_home">Video list</string>
+    <string name="menu_gallery">Add video</string>
+    <string name="menu_slideshow">Favorite video</string>
+    <string name="GetRandom"> Random video</string>
 
     <string name="home_second">Home Second</string>
-    <string name="author">aboutAuthor</string>
+    <string name="author">about author</string>
+    <string name="pass">неправильний пароль</string>
+    <string name="cast">Casts</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

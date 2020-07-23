@@ -22,6 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import static androidx.navigation.Navigation.*;
 
+/**
+ * this class show main screen application with navigation and fragments
+ */
 public class MainScreen extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -58,13 +61,12 @@ public class MainScreen extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
+/*
     public void testbuttom(View view) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("movie"); // Key
-        MyMovie movie = new MyMovie("test" , "My ",R.drawable.avatar);
+        MyMovie movie = new MyMovie("test", "My ", R.drawable.avatar);
         ref.setValue(movie); // Value
-        Toast toast = Toast.makeText(this, "Click !", Toast.LENGTH_LONG);
-        toast.show();
     }
+    */
 }

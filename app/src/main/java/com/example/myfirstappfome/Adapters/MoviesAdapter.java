@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myfirstappfome.Custom;
+import com.example.myfirstappfome.ClickProcess;
 import com.example.myfirstappfome.DataClasses.MyMovie;
 import com.example.myfirstappfome.R;
 
@@ -17,24 +17,32 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/***
+ * Class for create relations with data class movie and RecycleView and show movie elements
+ * {@link com.example.myfirstappfome.DataClasses.MovieFullInfo}
+ */
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     private LayoutInflater inflater;
     private List<MyMovie> movies;
-    private Custom<View, MyMovie> clickAction;
+    private ClickProcess<View, MyMovie> clickAction;
 
-    public MoviesAdapter(Context context, List<MyMovie> movies, Custom<View , MyMovie>  clickAction) {
+    public MoviesAdapter(Context context, List<MyMovie> movies, ClickProcess<View, MyMovie> clickAction) {
         this.movies = new ArrayList(movies);
         this.inflater = LayoutInflater.from(context);
         this.clickAction = clickAction;
     }
+
     @NonNull
     @Override
     public MoviesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = inflater.inflate(R.layout.movie, parent, false);
+        View view = inflater.inflate(R.layout.movie, parent,  false);
         return new ViewHolder(view);
     }
 
+    /***
+     * method add movie in RecycleView
+     * @param movie item , which will be added in recycle View
+     */
     public void addItem(MyMovie movie) {
         movies.add(movie);
         notifyItemInserted(movies.size() - 1);
@@ -67,12 +75,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView imageView;
         final TextView nameView, descriptionView;
-        ViewHolder(View view){
+
+        ViewHolder(View view) {
             super(view);
-            imageView = (ImageView)view.findViewById(R.id.image);
+            imageView = (ImageView) view.findViewById(R.id.image);
             nameView = (TextView) view.findViewById(R.id.name);
             descriptionView = (TextView) view.findViewById(R.id.description);
         }

@@ -15,14 +15,18 @@ import com.example.myfirstappfome.DataClasses.MyMovie;
 
 import java.util.Objects;
 
-public class MovieInf extends AppCompatActivity {
+/**
+ *this activity show all information about movie object
+ */
+public class MovieInfo extends AppCompatActivity {
+    private static final String MOVIE = "movie";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_inf);
+        setContentView(R.layout.activity_movie_info);
 
-        MovieFullInfo movie = (MovieFullInfo) getIntent().getSerializableExtra("movie");
+        MovieFullInfo movie = (MovieFullInfo) getIntent().getSerializableExtra(MOVIE);
         TextView textName = (TextView) findViewById(R.id.MovieName);
         TextView textDescription = (TextView) findViewById(R.id.MovieDescription);
         TextView textComment = (TextView) findViewById(R.id.MovieComment);
@@ -30,8 +34,7 @@ public class MovieInf extends AppCompatActivity {
         ImageView favorite = (ImageView) findViewById(R.id.favorite);
 
         //String name  = getIntent().getStringExtra("name");
-        assert movie != null;
-        textName.setText(movie.getName());
+        textName.setText(Objects.requireNonNull(movie).getName());
         //String description  = getIntent().getStringExtra("Description");
         textDescription.setText(movie.getDescription());
         //int imag = Objects.requireNonNull(getIntent().getExtras()).getInt("Image");
@@ -41,7 +44,8 @@ public class MovieInf extends AppCompatActivity {
     public void click(View view) {
 
         Intent intent = new Intent(this, CastsActivity.class);
-       intent.putExtra("movie", getIntent().getSerializableExtra("movie"));
+        intent.putExtra(MOVIE, getIntent().getSerializableExtra(MOVIE));
         startActivity(intent);
     }
+
 }

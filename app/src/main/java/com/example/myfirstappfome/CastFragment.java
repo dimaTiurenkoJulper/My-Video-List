@@ -13,39 +13,41 @@ import android.view.ViewGroup;
 
 import com.example.myfirstappfome.Adapters.CastsAdapter;
 import com.example.myfirstappfome.DataClasses.CastFullInfo;
-import com.example.myfirstappfome.DataClasses.Casts;
+import com.example.myfirstappfome.DataClasses.Cast;
 import com.example.myfirstappfome.DataClasses.MovieFullInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-
+/***
+ * fragment , which show Recycle View for Casts
+ */
 public class CastFragment extends Fragment {
-    private List<Casts> castsList = new ArrayList<>();
+    private List<Cast> castsList = new ArrayList<>();
     private CastsAdapter adapter;
+    private static final String MOVIE = "movie";
+    private static final String CAST = "Cast";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cast_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.list);
-        MovieFullInfo movie = (MovieFullInfo) getActivity().getIntent().getSerializableExtra("movie");
+        MovieFullInfo movie = (MovieFullInfo) getActivity().getIntent().getSerializableExtra(MOVIE);
+        setInitialData(Objects.requireNonNull(movie));
         adapter = new CastsAdapter(getContext(), castsList, (v, myCast) -> {
-            Intent intent = new Intent(v.getContext(), CastInf.class);
-            intent.putExtra("Cast", myCast);
+            Intent intent = new Intent(v.getContext(), CastInfo.class);
+            intent.putExtra(CAST, myCast);
             startActivity(intent);
         });
-        assert movie != null;
-        setInitialData(movie);
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
     private void setInitialData(MovieFullInfo movie) {
-        assert movie != null;
         for (CastFullInfo cast : movie.getCasts()) {
-            adapter.addItems(new CastFullInfo(cast.getName(), cast.getDescription(), cast.getImage()));
+            adapter.addItem(new CastFullInfo(cast.getName(), cast.getDescription(), cast.getImage()));
         }
     }
 }

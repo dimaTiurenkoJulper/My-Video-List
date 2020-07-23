@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--<TextView
-        android:id="@+id/text_gallery"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:text="Write name for your  movie" />
+        android:text="Write Description for your  movie" />
     <EditText
-        android:id="@+id/MovieName"
+        android:id="@+id/MovieDescription"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
     <Button
@@ -22,5 +21,6 @@
         android:text="Add Name"
         android:onClick="ConfirmData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

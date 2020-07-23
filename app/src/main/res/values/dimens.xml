@@ -6,4 +6,12 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="movieImage">100dp</dimen>
+    <dimen name="movie_margin">16dp</dimen>
+    <dimen name="WidthName">300dp</dimen>
+    <dimen name="HeightName">70dp</dimen>
+    <dimen name="favorite_width">70dp</dimen>
+    <dimen name="Image_Height">200dp</dimen>
+    <dimen name="Description_Height">350dp</dimen>
+    <dimen name="Comment_Height">70dp</dimen>
 </resources>

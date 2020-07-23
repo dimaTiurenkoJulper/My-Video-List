@@ -3,7 +3,7 @@ package com.example.myfirstappfome.DataClasses;
 /**
  * data class , which used for show object in RecycleView
  */
-public class MyMovie {
+public class Cast {
     private String name;
     private String description;
     private int image;
@@ -11,8 +11,7 @@ public class MyMovie {
     /**
      * empty constructor for get object from firebase
      */
-    public MyMovie() {
-
+    public Cast() {
     }
 
     /**
@@ -22,33 +21,32 @@ public class MyMovie {
      * @param description
      * @param image
      */
-    public MyMovie(String name, String description, int image) {
-
+    public Cast(String name, String description, int image) {
         this.name = name;
         this.description = description;
         this.image = image;
     }
 
     /**
-     * method return movie name
+     * method give cast name
      *
-     * @return string
+     * @retur cast name
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * method change movie name
+     * method set new cast name
      *
-     * @param name will change old name .
+     * @param name - new cast name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * get movie description
+     * method give cast description
      *
      * @return String
      */
@@ -57,16 +55,16 @@ public class MyMovie {
     }
 
     /**
-     * set new movie description
+     * method set new cast description
      *
-     * @param description new value for description
+     * @param description - new cast description
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * get movie Image
+     * method give cast image
      *
      * @return int
      */
@@ -75,9 +73,9 @@ public class MyMovie {
     }
 
     /**
-     * set new movie Image
+     * set new Cast image
      *
-     * @param image - new value for cast image
+     * @param image - new image
      */
     public void setImage(int image) {
         this.image = image;

@@ -16,7 +16,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
+/***
+ *this class show login screen and check password
+ */
+public class StartScreen extends AppCompatActivity {
+    private final static String PASSWORD = "d";
+    private final static String MOVIE_DESCRIPTION = "d";
+    private final static String MOVIE_NAME = "d";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +33,21 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         GoogleSignInClient GoogleSingIn = GoogleSignIn.getClient(this, gso);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-
     }
 
     public void LogOnClick(View view) {
-        EditText editText = (EditText)  findViewById(R.id.MainTextBox);
-            if (!"D".contentEquals(editText.getText())){
-                Toast toast = Toast.makeText(this, "Неправильный пароль",Toast.LENGTH_LONG);
-                toast.show();
-                super.recreate();
-            }
-            else{
-                FirebaseDatabase db = FirebaseDatabase.getInstance();
-                DatabaseReference ref = db.getReference("movies"); // Key
-                MyMovie movie = new MyMovie("test" , "My movieas",R.drawable.avatar);
-                ref.setValue(movie); // Value
-                Intent intent = new Intent(this, MainScreen.class);
-                startActivity(intent);
-            }
+        EditText editText = (EditText) findViewById(R.id.MainTextBox);
+        if (!PASSWORD.contentEquals(editText.getText())) {
+            Toast toast = Toast.makeText(this, R.string.pass, Toast.LENGTH_LONG);
+            toast.show();
+            super.recreate();
+        } else {
+            FirebaseDatabase db = FirebaseDatabase.getInstance();
+            DatabaseReference ref = db.getReference("movies"); // Key
+            MyMovie movie = new MyMovie(MOVIE_NAME, MOVIE_DESCRIPTION, R.drawable.avatar);
+            ref.setValue(movie); // Value
+            Intent intent = new Intent(this, MainScreen.class);
+            startActivity(intent);
+        }
     }
 }

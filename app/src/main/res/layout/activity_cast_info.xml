@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CastInfo">
+
+    <TextView
+        android:id="@+id/CastName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/HeightName"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/CastImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Image_Height" />
+
+    <TextView
+        android:id="@+id/CastDescription"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Description_Height" />
+
+    <TextView
+        android:id="@+id/CastComment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

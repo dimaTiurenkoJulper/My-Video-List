@@ -1,11 +1,12 @@
 package com.example.myfirstappfome;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
+/***
+ * Activity for show all Cast element in RecycleView
+ */
 public class CastsActivity extends AppCompatActivity {
 
     @Override

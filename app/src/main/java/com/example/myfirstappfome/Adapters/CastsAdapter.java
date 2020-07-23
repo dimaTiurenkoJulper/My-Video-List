@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myfirstappfome.CastFragment;
-import com.example.myfirstappfome.Custom;
+import com.example.myfirstappfome.ClickProcess;
 import com.example.myfirstappfome.DataClasses.CastFullInfo;
-import com.example.myfirstappfome.DataClasses.Casts;
-import com.example.myfirstappfome.DataClasses.MyMovie;
+import com.example.myfirstappfome.DataClasses.Cast;
 import com.example.myfirstappfome.R;
 
 import java.util.ArrayList;
@@ -20,26 +18,38 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/***
+ * Class for create relations with data class Cast and RecycleView and show cast elements
+ * {@link Cast}
+ */
 public class CastsAdapter extends RecyclerView.Adapter<CastsAdapter.ViewHolder> {
     private LayoutInflater inflater;
-    private List<CastFullInfo> casts ;
-    private Custom<View, CastFullInfo> clickAction;
+    private List<CastFullInfo> casts;
+    private ClickProcess<View, CastFullInfo> clickAction;
 
-    public CastsAdapter(Context context, List<Casts> casts , Custom<View, CastFullInfo> clickAction) {
+    /***
+     * class constructor with this param:
+     * @param context
+     * @param casts
+     * @param clickAction
+     */
+    public CastsAdapter(Context context, List<Cast> casts, ClickProcess<View, CastFullInfo> clickAction) {
         this.casts = new ArrayList(casts);
         this.inflater = LayoutInflater.from(context);
         this.clickAction = clickAction;
     }
-
     @NonNull
     @Override
-    public CastsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
+    public CastsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.movie, parent, false);
         return new CastsAdapter.ViewHolder(view);
     }
 
-    public void addItems(CastFullInfo cast) {
+    /***
+     * method , added Cast object in list
+     * @param cast - object , which will be added in list
+     */
+    public void addItem(CastFullInfo cast) {
         casts.add(cast);
         notifyItemInserted(casts.size() - 1);
     }
@@ -54,7 +64,7 @@ public class CastsAdapter extends RecyclerView.Adapter<CastsAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 clickAction.get(v, myCast);
-//                Intent intent = new Intent(v.getContext(),MovieInf.class);
+//                Intent intent = new Intent(v.getContext(),MovieInfo.class);
 //                intent.putExtra("name", myMovie.getName());
 //                intent.putExtra("image", myMovie.getImage());
 //                intent.putExtra("Description", myMovie.getDescription());
@@ -71,7 +81,7 @@ public class CastsAdapter extends RecyclerView.Adapter<CastsAdapter.ViewHolder> 
         return casts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    protected class ViewHolder extends RecyclerView.ViewHolder {
         final ImageView imageView;
         final TextView nameView, descriptionView;
 

@@ -1,21 +1,32 @@
 package com.example.myfirstappfome.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
+import android.nfc.Tag;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myfirstappfome.ClickProcess;
 import com.example.myfirstappfome.DataClasses.MyMovie;
 import com.example.myfirstappfome.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 /***
  * Class for create relations with data class movie and RecycleView and show movie elements
@@ -25,11 +36,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     private LayoutInflater inflater;
     private List<MyMovie> movies;
     private ClickProcess<View, MyMovie> clickAction;
+    private Context context ;
 
     public MoviesAdapter(Context context, List<MyMovie> movies, ClickProcess<View, MyMovie> clickAction) {
         this.movies = new ArrayList(movies);
         this.inflater = LayoutInflater.from(context);
         this.clickAction = clickAction;
+        this.context = context;
     }
 
     @NonNull
@@ -46,12 +59,27 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     public void addItem(MyMovie movie) {
         movies.add(movie);
         notifyItemInserted(movies.size() - 1);
+
     }
 
     @Override
     public void onBindViewHolder(MoviesAdapter.ViewHolder holder, int position) {
         final MyMovie myMovie = movies.get(position);
-        holder.imageView.setImageResource(myMovie.getImage());
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        storageRef.child(myMovie.getImage()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).into(holder.imageView);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.i("Error",  "error with download image in movie list");
+            }
+        });
+
+        //holder.imageView.setImageResource(myMovie.getImage());
         holder.nameView.setText(myMovie.getName());
         holder.descriptionView.setText(myMovie.getDescription());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

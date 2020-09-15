@@ -1,5 +1,7 @@
 package com.example.myfirstappfome.DataClasses;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /***
@@ -7,9 +9,9 @@ import java.io.Serializable;
  */
 public class CastFullInfo implements Serializable {
     private String name;
-    private String Comment;
+    private String comment;
     private String description;
-    private int image;
+    private Bitmap image;
 
     /***
      * constructor with three main parameters
@@ -17,7 +19,7 @@ public class CastFullInfo implements Serializable {
      * @param description cast description
      * @param image cast image
      */
-    public CastFullInfo(String name, String description, int image) {
+    public CastFullInfo(String name, String description, Bitmap image) {
         this.name = name;
         this.description = description;
         this.image = image;
@@ -45,7 +47,7 @@ public class CastFullInfo implements Serializable {
      * @return String
      */
     public String getComment() {
-        return this.Comment;
+        return this.comment;
     }
 
     /**
@@ -54,7 +56,7 @@ public class CastFullInfo implements Serializable {
      * @param comment value , which will change old comment
      */
     public void setComment(String comment) {
-        this.Comment = comment;
+        this.comment = comment;
     }
 
     /**
@@ -78,9 +80,9 @@ public class CastFullInfo implements Serializable {
     /**
      * get cast Image
      *
-     * @return int
+     * @return Bitmap
      */
-    public int getImage() {
+    public Bitmap getImage() {
         return this.image;
     }
 
@@ -89,7 +91,16 @@ public class CastFullInfo implements Serializable {
      *
      * @param image - new value for cast image
      */
-    public void setImage(int image) {
+    public void setImage(Bitmap image) {
         this.image = image;
+    }
+
+    /**
+     * add new comment
+     *
+     * @param comment
+     */
+    public void addComment(String comment) {
+        this.comment = comment;
     }
 }

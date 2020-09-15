@@ -1,6 +1,11 @@
 package com.example.myfirstappfome.DataClasses;
 
-import java.io.Serializable;
+import android.net.Uri;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +14,26 @@ import androidx.annotation.NonNull;
 /**
  * this class get all information about movie .
  */
-public class MovieFullInfo implements Serializable {
+public class MovieFullInfo  {
     private String name;
-    private String Comment;
+    private String comment;
     private String description;
-    private int image;
+    private String image;
     private boolean isFavorite;
     private List<CastFullInfo> casts = new ArrayList<>();
 
+    public MovieFullInfo (){
+
+    }
+
     /**
      * constructor with three main parameters
-     *
      * @param name        - cast name
      * @param description cast description
      * @param image       cast image
      */
-    public MovieFullInfo(String name, String description, int image) {
+
+    public MovieFullInfo(String name, String description, String image) {
         this.name = name;
         this.description = description;
         this.image = image;
@@ -56,7 +65,7 @@ public class MovieFullInfo implements Serializable {
      * @return String
      */
     public String getComment() {
-        return this.Comment;
+        return this.comment;
     }
 
     /**
@@ -65,7 +74,7 @@ public class MovieFullInfo implements Serializable {
      * @param comment String  value , which will change old comment
      */
     public void setComment(String comment) {
-        this.Comment = comment;
+        this.comment = comment;
     }
 
     /**
@@ -91,7 +100,7 @@ public class MovieFullInfo implements Serializable {
      *
      * @return int
      */
-    public int getImage() {
+    public String getImage() {
         return this.image;
     }
 
@@ -100,7 +109,7 @@ public class MovieFullInfo implements Serializable {
      *
      * @param image - new value for cast image
      */
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -121,5 +130,14 @@ public class MovieFullInfo implements Serializable {
      */
     public void addCast(@NonNull CastFullInfo cast) {
         casts.add(cast);
+    }
+
+    /**
+     * add new comment
+     *
+     * @param comment
+     */
+    public void addComment(String comment) {
+        this.comment = comment;
     }
 }

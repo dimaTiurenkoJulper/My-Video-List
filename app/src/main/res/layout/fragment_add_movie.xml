@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/Add_movie_text_size"
+        android:text="@string/add_name" />
+    <EditText
+        android:id="@+id/AddMovieName"
+        android:layout_width="match_parent"
+        android:text="naruto"
+        android:textSize="@dimen/Add_movie_text_size"
+        android:layout_height="@dimen/Add_movie_name" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/Add_movie_text_size"
+        android:text="@string/add_description" />
+    <EditText
+        android:id="@+id/AddMovieDescription"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/Add_movie_text_size"
+        android:text="naruto"
+        android:layout_height="@dimen/Add_movie_description" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="@dimen/Add_movie_text_size"
+        android:text="@string/add_comment" />
+    <EditText
+        android:id="@+id/AddMovieComment"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/Add_movie_text_size"
+        android:text="naruto"
+        android:layout_height="@dimen/Add_movie_comment" />
+    <Button
+        android:id="@+id/action"
+        android:text="@string/add_button_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Add_movie_button" />
+</LinearLayout>

@@ -18,7 +18,10 @@
     <string name="author">about author</string>
     <string name="pass">неправильний пароль</string>
     <string name="cast">Casts</string>
-
+    <string name="add_name">Write name for your  movie</string>
+    <string name="add_description">set description for your movie </string>
+    <string name="add_comment">set comment for your movie </string>
+    <string name="add_button_text">confirm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

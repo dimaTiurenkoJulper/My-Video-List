@@ -1,6 +1,7 @@
 package com.example.myfirstappfome.ui.home;
 
 import android.content.Intent;
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,18 +52,13 @@ public class HomeFragment extends Fragment {
         // create adapter
         adapter = new MoviesAdapter(getContext(), movieList, /* onClick in adapter*/(v, myMovie) -> {
             Log.i(TAG, "Click !" + myMovie.getName());
-            addCast(myMovie);
+           // MovieFullInfo movie = new MovieFullInfo(myMovie.getName(), myMovie.getDescription(), myMovie.getImage());
+            Intent intent = new Intent(getContext(), MovieInfo.class);
+            intent.putExtra(MOVIE, myMovie);
+            startActivity(intent);
         });
         recyclerView.setAdapter(adapter);
         return root;
-    }
-
-    private void addCast(MyMovie myMovie) {
-        MovieFullInfo movie = new MovieFullInfo(myMovie.getName(), myMovie.getDescription(), myMovie.getImage());
-        movie.addCast(new CastFullInfo("onidzuka", " Pro", R.drawable.avatar));
-        Intent intent = new Intent(getContext(), MovieInfo.class);
-        intent.putExtra(MOVIE, movie);
-        startActivity(intent);
     }
 
     /*0IKeAqYUdDw7CgwDJz4Hv67mYcrHdKPN4kTXVi6q
@@ -77,10 +73,11 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Retrieve latest value
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    MyMovie movie = postSnapshot.getValue(MyMovie.class);
+                    MovieFullInfo movieInfo = postSnapshot.getValue(MovieFullInfo.class);
                     Log.i(TAG, postSnapshot.child("name").getValue(String.class) + postSnapshot.child("description").getValue(String.class)
-                            + R.drawable.avatar);
-                    adapter.addItem(movie);
+                          + R.drawable.avatar);
+                   MyMovie movie = new MyMovie(movieInfo.getName(),movieInfo.getDescription(), movieInfo.getImage());
+                   adapter.addItem(movie);
                 }
             }
 

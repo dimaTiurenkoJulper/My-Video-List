@@ -33,6 +33,6 @@ public class CastInfo extends AppCompatActivity {
         //String description  = getIntent().getStringExtra("Description");
         textDescription.setText(cast.getDescription());
         //int imag = Objects.requireNonNull(getIntent().getExtras()).getInt("Image");
-        image.setImageResource(cast.getImage());
+        image.setImageBitmap(cast.getImage());
     }
 }

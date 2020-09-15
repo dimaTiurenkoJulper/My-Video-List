@@ -57,7 +57,7 @@ public class CastsAdapter extends RecyclerView.Adapter<CastsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(CastsAdapter.ViewHolder holder, int position) {
         final CastFullInfo myCast = casts.get(position);
-        holder.imageView.setImageResource(myCast.getImage());
+        holder.imageView.setImageBitmap(myCast.getImage());
         holder.nameView.setText(myCast.getName());
         holder.descriptionView.setText(myCast.getDescription());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

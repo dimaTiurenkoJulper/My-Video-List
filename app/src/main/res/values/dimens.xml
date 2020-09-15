@@ -14,4 +14,12 @@
     <dimen name="Image_Height">200dp</dimen>
     <dimen name="Description_Height">350dp</dimen>
     <dimen name="Comment_Height">70dp</dimen>
+    <dimen name="Add_movie_text_size">20sp</dimen>
+    <dimen name="Add_movie_name">70dp</dimen>
+    <dimen name="Add_movie_description">300dp</dimen>
+    <dimen name="Add_movie_comment">230dp</dimen>
+    <dimen name="Add_movie_button">50dp</dimen>
+    <dimen name="Log_in_button">120dp</dimen>
+    <dimen name="MainTextBox">30dp</dimen>
+    <dimen name="SingInButtonHeight">50dp</dimen>
 </resources>

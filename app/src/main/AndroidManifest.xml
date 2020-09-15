@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AddImage"></activity>
-        <activity android:name=".AddDescription" />
         <activity android:name=".CastInfo" />
         <activity android:name=".CastsActivity" />
         <activity android:name=".MovieInfo" />

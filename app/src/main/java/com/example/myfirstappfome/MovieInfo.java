@@ -26,7 +26,7 @@ public class MovieInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
-        MovieFullInfo movie = (MovieFullInfo) getIntent().getSerializableExtra(MOVIE);
+        MyMovie movie = (MyMovie) getIntent().getSerializableExtra(MOVIE);
         TextView textName = (TextView) findViewById(R.id.MovieName);
         TextView textDescription = (TextView) findViewById(R.id.MovieDescription);
         TextView textComment = (TextView) findViewById(R.id.MovieComment);
@@ -38,7 +38,7 @@ public class MovieInfo extends AppCompatActivity {
         //String description  = getIntent().getStringExtra("Description");
         textDescription.setText(movie.getDescription());
         //int imag = Objects.requireNonNull(getIntent().getExtras()).getInt("Image");
-        image.setImageResource(movie.getImage());
+        //image.setImageBitmap(movie.getImage());
     }
 
     public void click(View view) {

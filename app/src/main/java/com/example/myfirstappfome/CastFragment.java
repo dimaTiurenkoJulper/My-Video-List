@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,13 @@ import com.example.myfirstappfome.Adapters.CastsAdapter;
 import com.example.myfirstappfome.DataClasses.CastFullInfo;
 import com.example.myfirstappfome.DataClasses.Cast;
 import com.example.myfirstappfome.DataClasses.MovieFullInfo;
+import com.example.myfirstappfome.DataClasses.MyMovie;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 /***
  * fragment , which show Recycle View for Casts
@@ -33,7 +37,7 @@ public class CastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cast_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.list);
-        MovieFullInfo movie = (MovieFullInfo) getActivity().getIntent().getSerializableExtra(MOVIE);
+        MyMovie movie = (MyMovie) getActivity().getIntent().getSerializableExtra(MOVIE);
         setInitialData(Objects.requireNonNull(movie));
         adapter = new CastsAdapter(getContext(), castsList, (v, myCast) -> {
             Intent intent = new Intent(v.getContext(), CastInfo.class);
@@ -45,9 +49,13 @@ public class CastFragment extends Fragment {
         return view;
     }
 
-    private void setInitialData(MovieFullInfo movie) {
+    private void setInitialData(MyMovie movie) {
         for (CastFullInfo cast : movie.getCasts()) {
-            adapter.addItem(new CastFullInfo(cast.getName(), cast.getDescription(), cast.getImage()));
+            if (cast != null) {
+                adapter.addItem(new CastFullInfo(cast.getName(), cast.getDescription(), cast.getImage()));
+            } else {
+                Log.i(TAG, "this movie don`t have any added cast");
+            }
         }
     }
 }

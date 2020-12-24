@@ -25,7 +25,7 @@
         android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary_variant"
-        android:text="Dimasic INC"
-        android:textSize="50dp" />
+        android:text="@string/company_name"
+        android:textSize="@dimen/company_name_size" />
 
 </LinearLayout>

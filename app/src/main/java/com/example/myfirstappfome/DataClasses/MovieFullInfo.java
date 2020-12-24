@@ -1,11 +1,5 @@
 package com.example.myfirstappfome.DataClasses;
 
-import android.net.Uri;
-
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +27,11 @@ public class MovieFullInfo  {
      * @param image       cast image
      */
 
-    public MovieFullInfo(String name, String description, String image) {
+    public MovieFullInfo(String name, String description, String image , boolean isFavorite) {
         this.name = name;
         this.description = description;
         this.image = image;
-
+        this.isFavorite = isFavorite;
     }
 
     /**
@@ -126,7 +120,7 @@ public class MovieFullInfo  {
     /**
      * add new cast in Casts list
      *
-     * @param cast
+     * @param cast cast which will be added
      */
     public void addCast(@NonNull CastFullInfo cast) {
         casts.add(cast);
@@ -135,9 +129,16 @@ public class MovieFullInfo  {
     /**
      * add new comment
      *
-     * @param comment
+     * @param comment comment with replace old comment
      */
     public void addComment(String comment) {
         this.comment = comment;
+    }
+
+    public boolean getIsFavorite() {
+        return isFavorite;
+    }
+    public void setFavorite(boolean isFavorite){
+        this.isFavorite=isFavorite;
     }
 }

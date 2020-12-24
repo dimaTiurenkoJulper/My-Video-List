@@ -1,7 +1,6 @@
 package com.example.myfirstappfome.ui.home;
 
 import android.content.Intent;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.myfirstappfome.Adapters.MoviesAdapter;
-import com.example.myfirstappfome.DataClasses.CastFullInfo;
+import com.example.myfirstappfome.Adapters.SaveMovieList;
 import com.example.myfirstappfome.DataClasses.MovieFullInfo;
 import com.example.myfirstappfome.DataClasses.MyMovie;
+import com.example.myfirstappfome.MainScreen;
 import com.example.myfirstappfome.MovieInfo;
 import com.example.myfirstappfome.R;
 import com.google.firebase.database.DataSnapshot;
@@ -23,10 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -44,15 +44,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        // myHomeModel = ViewModelProviders.of(this).get(homeModel.class);
-        // myHomeModel.setInitialData();
         setInitialData();
+
         RecyclerView recyclerView = root.findViewById(R.id.list);
-        // create adapter
         adapter = new MoviesAdapter(getContext(), movieList, /* onClick in adapter*/(v, myMovie) -> {
-            Log.i(TAG, "Click !" + myMovie.getName());
-           // MovieFullInfo movie = new MovieFullInfo(myMovie.getName(), myMovie.getDescription(), myMovie.getImage());
             Intent intent = new Intent(getContext(), MovieInfo.class);
             intent.putExtra(MOVIE, myMovie);
             startActivity(intent);
@@ -61,23 +56,18 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    /*0IKeAqYUdDw7CgwDJz4Hv67mYcrHdKPN4kTXVi6q
-    https://myfirstappfome.firebaseio.com/*/
     private void setInitialData() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(); // Key
-
-        // MyMovie secmov = new MyMovie("Avatar", "film about avatar " , R.drawable.avatar);
-        // movieList.add(secmov);
+        ArrayList  <MyMovie> list = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // Retrieve latest value
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     MovieFullInfo movieInfo = postSnapshot.getValue(MovieFullInfo.class);
-                    Log.i(TAG, postSnapshot.child("name").getValue(String.class) + postSnapshot.child("description").getValue(String.class)
-                          + R.drawable.avatar);
-                   MyMovie movie = new MyMovie(movieInfo.getName(),movieInfo.getDescription(), movieInfo.getImage());
-                   adapter.addItem(movie);
+                    MyMovie movie = new MyMovie(Objects.requireNonNull(movieInfo).getName(), movieInfo.getDescription(), movieInfo.getImage(),movieInfo.getIsFavorite());
+                    adapter.addItem(movie);
+                   // Toast toas = Toast.makeText(getContext()," show " + movie.isFavorite(), Toast.LENGTH_LONG);
+                    MainScreen.setAppMovieList(new SaveMovieList(list));
                 }
             }
 

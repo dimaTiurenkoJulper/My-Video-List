@@ -20,8 +20,9 @@ import androidx.annotation.NonNull;
 public class MyMovie implements Serializable {
     private String name;
     private String description;
-    public String image;
+    private String image;
     private List<CastFullInfo> casts = new ArrayList<>();
+    private boolean isFavorite ;
 
     /**
      * empty constructor for get object from firebase
@@ -36,11 +37,12 @@ public class MyMovie implements Serializable {
      * @param name
      * @param description
      */
-    public MyMovie(String name, String description , String Image) {
+    public MyMovie(String name, String description , String Image , boolean isFavorite) {
 
         this.name = name;
         this.description = description;
         this.image = Image;
+        this.isFavorite = isFavorite;
     }
     public List<CastFullInfo> getCasts() {
         return casts;
@@ -96,18 +98,6 @@ public class MyMovie implements Serializable {
      * @return int
      */
     public String getImage() {
-       /* final Bitmap[] bmp = new Bitmap[1];
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference().child(image);
-        final long ONE_MEGABYTE = 1024 * 1024;
-        storageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap  bmp6 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                bmp[0] = bmp6;
-            }
-        });
-        return bmp[0];*/
        return image;
     }
 
@@ -118,5 +108,11 @@ public class MyMovie implements Serializable {
      */
     public void setImage(String image) {
         this.image = image;
+    }
+    public void setFavorite (boolean isFavorite){
+        this.isFavorite = isFavorite;
+    }
+    public boolean getIsFavorite (){
+        return isFavorite;
     }
 }

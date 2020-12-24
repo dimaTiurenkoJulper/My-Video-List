@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myfirstappfome.DataClasses.MyMovie;
+import com.example.myfirstappfome.Services.MediaService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class StartScreen extends AppCompatActivity {
     private final static String PASSWORD = "d";
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,9 @@ public class StartScreen extends AppCompatActivity {
     }
 
     public void LogOnClick(View view) {
-        EditText editText = (EditText) findViewById(R.id.MainTextBox);
-        if (false /*!PASSWORD.contentEquals(editText.getText())*/) {
+        intent = new Intent(this, MainScreen.class);
+        EditText editText = findViewById(R.id.MainTextBox);
+        if (!PASSWORD.contentEquals(editText.getText())) {
             Toast toast = Toast.makeText(this, R.string.pass, Toast.LENGTH_LONG);
             toast.show();
             super.recreate();
@@ -45,3 +48,11 @@ public class StartScreen extends AppCompatActivity {
         }
     }
 }
+        /*
+        Intent i=new Intent(this, MediaService.class);
+        if (view.getId()==R.id.LogInButton) {
+            startService(i);
+        }
+        else {
+            stopService(i);
+        }*/

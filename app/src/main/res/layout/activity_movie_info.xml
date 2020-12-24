@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MovieInfo">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/MovieName"
         android:layout_width="@dimen/WidthName"
         android:layout_height="@dimen/HeightName"
@@ -17,18 +17,23 @@
 
     <ImageView
         android:id="@+id/favorite"
-        android:layout_height="@dimen/favorite_width"
         android:layout_width="wrap_content"
+        android:layout_height="@dimen/favorite_width"
+        app:layout_constraintBottom_toTopOf="@id/MovieImg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/MovieName"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/MovieName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/star" />
 
     <ImageView
-        android:id="@+id/MovieImage"
+        android:id="@+id/MovieImg"
+        android:onClick="goIntoSite"
         android:layout_width="match_parent"
         android:layout_height="@dimen/Image_Height"
-        app:layout_constraintTop_toBottomOf="@+id/MovieName"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toBottomOf="@id/MovieName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="OnClick"
+        android:contentDescription="@string/image_show_movie" />
 
     <Button
         android:id="@+id/Casts"
@@ -38,15 +43,15 @@
         android:text="@string/cast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MovieImage" />
+        app:layout_constraintTop_toBottomOf="@id/MovieImg" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/MovieDescription"
         android:layout_width="match_parent"
         android:layout_height="@dimen/Description_Height"
-        app:layout_constraintTop_toBottomOf="@+id/Casts" />
+        app:layout_constraintTop_toBottomOf="@id/Casts" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/MovieComment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/Comment_Height"

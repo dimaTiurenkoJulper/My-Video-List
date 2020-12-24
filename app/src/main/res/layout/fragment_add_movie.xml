@@ -1,48 +1,101 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="50dp">
+
     <TextView
+        android:id="@+id/titleAddmovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/defaultMargin"
+        android:layout_marginBottom="20dp"
+        android:text="@string/add_movie_title"
+        android:textSize="@dimen/Add_movie_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/defaultMargin"
+        android:hint="@string/add_name"
+        android:text="@string/add_button_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titleAddmovie">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/AddMovieName"
+            android:layout_width="331dp"
+            android:layout_height="@dimen/Add_movie_name"
+            android:textSize="@dimen/Add_movie_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fieldName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/IsFavorite"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/Add_movie_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fieldName"
+        app:layout_constraintTop_toBottomOf="@id/titleAddmovie"
+        android:contentDescription="@string/star_add_movie" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="@dimen/Add_movie_text_size"
-        android:text="@string/add_name" />
-    <EditText
-        android:id="@+id/AddMovieName"
-        android:layout_width="match_parent"
-        android:text="naruto"
-        android:textSize="@dimen/Add_movie_text_size"
-        android:layout_height="@dimen/Add_movie_name" />
-    <TextView
+        android:layout_margin="@dimen/defaultMargin"
+        android:hint="@string/add_name"
+        android:text="@string/add_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fieldName">
+
+        <EditText
+            android:id="@+id/AddMovieDescription"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Add_movie_description"
+            android:text=""
+            android:textSize="@dimen/Add_movie_text_size"
+            android:autofillHints="movie Descriotion : "
+            android:inputType="text"
+            tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="@dimen/Add_movie_text_size"
-        android:text="@string/add_description" />
-    <EditText
-        android:id="@+id/AddMovieDescription"
-        android:layout_width="match_parent"
-        android:textSize="@dimen/Add_movie_text_size"
-        android:text="naruto"
-        android:layout_height="@dimen/Add_movie_description" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="@dimen/Add_movie_text_size"
-        android:text="@string/add_comment" />
+        android:layout_margin="@dimen/defaultMargin"
+        android:hint="@string/add_comment"
+        android:text="@string/add_button_text"
+        app:layout_constraintTop_toBottomOf="@id/descriptionlayout" >
+
     <EditText
         android:id="@+id/AddMovieComment"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/Add_movie_comment"
         android:textSize="@dimen/Add_movie_text_size"
-        android:text="naruto"
-        android:layout_height="@dimen/Add_movie_comment" />
+        app:layout_constraintTop_toBottomOf="@id/textView3"
+        android:autofillHints="movie coment :"
+        android:inputType="text"
+        tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/action"
-        android:text="@string/add_button_text"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Add_movie_button" />
-</LinearLayout>
+        android:layout_height="@dimen/Add_movie_button"
+        android:text="@string/add_button_text"
+        android:layout_margin="@dimen/defaultMargin"
+        app:layout_constraintTop_toBottomOf="@id/textView3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

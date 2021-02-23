@@ -1,11 +1,11 @@
 package com.example.myfirstappfome;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.myfirstappfome.DataClasses.MyMovie;
@@ -54,15 +54,17 @@ public class MovieInfo extends AppCompatActivity {
     }
 
     public void click(View view) {
-
-        Intent intent = new Intent(this, CastsActivity.class);
-        intent.putExtra(MOVIE, getIntent().getSerializableExtra(MOVIE));
-        startActivity(intent);
+        Toast.makeText(this , "Not yet implement", Toast.LENGTH_LONG).show();
+//
+//        Intent intent = new Intent(this, CastsActivity.class);
+//        intent.putExtra(MOVIE, getIntent().getSerializableExtra(MOVIE));
+//        startActivity(intent);
     }
 
     public void goIntoSite(View view) {
-        Intent intent = new Intent(this, CastsActivity.class);
-        intent.putExtra("Url", getIntent().getSerializableExtra(MOVIE));
-        startActivity(intent);
+        Toast.makeText(this , "Not yet implement", Toast.LENGTH_LONG).show();
+//        Intent intent = new Intent(this, CastsActivity.class);
+//        intent.putExtra("Url", getIntent().getSerializableExtra(MOVIE));
+//        startActivity(intent);
     }
 }

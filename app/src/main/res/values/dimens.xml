@@ -6,7 +6,7 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="movieImage">100dp</dimen>
+    <dimen name="movieImage">150dp</dimen>
     <dimen name="movie_margin">16dp</dimen>
     <dimen name="WidthName">300dp</dimen>
     <dimen name="HeightName">70dp</dimen>
@@ -24,4 +24,5 @@
     <dimen name="SingInButtonHeight">50dp</dimen>
     <dimen name="defaultMargin">16dp</dimen>
     <dimen name="company_name_size">20sp</dimen>
+    <dimen name="movieImagewidth">130dp</dimen>
 </resources>

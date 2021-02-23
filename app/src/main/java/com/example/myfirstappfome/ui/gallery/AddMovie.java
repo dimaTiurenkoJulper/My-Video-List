@@ -2,22 +2,18 @@ package com.example.myfirstappfome.ui.gallery;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.example.myfirstappfome.AddImage;
 import com.example.myfirstappfome.R;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * in this class u can add new movie into the firebase

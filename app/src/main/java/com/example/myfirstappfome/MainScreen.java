@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.myfirstappfome.Adapters.SaveMovieList;
 import com.example.myfirstappfome.Services.MediaService;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -27,20 +24,9 @@ import static androidx.navigation.Navigation.findNavController;
 public class MainScreen extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private static SaveMovieList saveMovieList ;
 
 
-    public static void  setAppMovieList(SaveMovieList movieList){
-        saveMovieList = movieList;
-    }
-    public static SaveMovieList getAppMoivieLsist (){
-        if(saveMovieList!=null){
-            return  saveMovieList;
-        }
-        else {
-            return new SaveMovieList(new ArrayList<>());
-        }
-    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -72,7 +72,10 @@ public class AddImage extends AppCompatActivity {
         }).addOnSuccessListener(taskSnapshot -> {
             FirebaseDatabase db = FirebaseDatabase.getInstance();
             DatabaseReference ref = db.getReference(Objects.requireNonNull(getIntent().getStringExtra("name"))); // Key
-            MovieFullInfo saveMovie = new MovieFullInfo(getIntent().getStringExtra("name"), getIntent().getStringExtra("description"), taskSnapshot.getMetadata().getPath(), getIntent().getBooleanExtra("favorite",false));
+            MovieFullInfo saveMovie = new MovieFullInfo(getIntent().getStringExtra("name"),
+                    getIntent().getStringExtra("description"),
+                    taskSnapshot.getMetadata().getPath(),
+                    getIntent().getBooleanExtra("favorite",false));
             if (getIntent().getStringExtra("comment") != null && !Objects.equals(getIntent().getStringExtra("comment"), "")) {
                 saveMovie.addComment(getIntent().getStringExtra("comment"));
             }

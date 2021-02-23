@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myfirstappfome">
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,13 +16,14 @@
         <activity android:name=".CastInfo" />
         <activity android:name=".CastsActivity" />
         <activity android:name=".MovieInfo" />
+
         <service
             android:name=".Services.MediaService"
             android:enabled="true"
             android:exported="true"
             android:permission="start/stop music"
-            tools:ignore="InnerclassSeparator">
-        </service>
+            tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".MainScreen"
             android:label="@string/title_activity_main_screen"

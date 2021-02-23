@@ -1,25 +1,14 @@
 package com.example.myfirstappfome.Services;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.example.myfirstappfome.R;
-import com.example.myfirstappfome.StartScreen;
-import com.example.myfirstappfome.ui.slideshow.SlideshowFragment;
-import com.google.android.gms.common.internal.Constants;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

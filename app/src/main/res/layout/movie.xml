@@ -1,32 +1,39 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
+    android:layout_margin="@dimen/defaultMargin"
+    android:background="@color/Ashen"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="@dimen/movieImage"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/movieImagewidth"
+        android:layout_height="@dimen/movieImage"
+        android:layout_margin="@dimen/defaultMargin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/show_image" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_width="190dp"
+        android:layout_height="20dp"
+        android:gravity="center_horizontal|center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintBottom_toTopOf="@id/description"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="280dp"
+        android:layout_width="190dp"
         android:layout_height="100dp"
+        android:layout_margin="@dimen/defaultMargin"
+        android:gravity="center_horizontal|center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image"

@@ -1,4 +1,4 @@
-package com.example.myfirstappfome;
+package com.example.myfirstappfome.Adapters;
 
 /***
  * Interface for set Click listener into fragment

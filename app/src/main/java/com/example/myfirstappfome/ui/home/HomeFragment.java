@@ -2,25 +2,22 @@ package com.example.myfirstappfome.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myfirstappfome.Adapters.MoviesAdapter;
 import com.example.myfirstappfome.DataClasses.MovieFullInfo;
-import com.example.myfirstappfome.DataClasses.MyMovie;
-import com.example.myfirstappfome.MovieInfo;
-import com.example.myfirstappfome.Movies;
+import com.example.myfirstappfome.DataClasses.Movies;
 import com.example.myfirstappfome.R;
+import com.example.myfirstappfome.ui.MovieInfo;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class HomeFragment extends Fragment {
     static Movies movies = Movies.getInstance();
-    private List<MyMovie> movieList = new ArrayList<>();
+    private List<MovieFullInfo> movieList = new ArrayList<>();
     private MoviesAdapter adapter;
     private static final String MOVIE = "movie";
     //private homeModel myHomeModel;
@@ -52,23 +49,28 @@ public class HomeFragment extends Fragment {
     }
 
     private void setInitialData() {
-        ArrayList<MyMovie> list = new ArrayList<>();
+        ArrayList<MovieFullInfo> list = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    MovieFullInfo movieInfo = postSnapshot.getValue(MovieFullInfo.class);
-                    MyMovie movie = new MyMovie(Objects.requireNonNull(movieInfo).getName(), movieInfo.getDescription(), movieInfo.getImage(), movieInfo.getIsFavorite());
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//            }
+//        });
+        ref.get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("firebase", "Error getting data", task.getException());
+            } else {
+                for (DataSnapshot postSnapshot : task.getResult().getChildren()) {
+                    MovieFullInfo movie = postSnapshot.getValue(MovieFullInfo.class);
                     adapter.addItem(movie);
                     list.add(movie);
                     movies.setList(list);
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }

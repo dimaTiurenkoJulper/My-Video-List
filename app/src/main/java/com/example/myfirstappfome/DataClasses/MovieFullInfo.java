@@ -1,38 +1,44 @@
 package com.example.myfirstappfome.DataClasses;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
+import java.io.Serializable;
 
 /**
  * this class get all information about movie .
  */
-public class MovieFullInfo  {
+public class MovieFullInfo implements Serializable {
     private String name;
     private String comment;
     private String description;
     private String image;
     private boolean isFavorite;
-    private List<CastFullInfo> casts = new ArrayList<>();
 
-    public MovieFullInfo (){
+    /**
+     * constructor for firebase RealTimeDatabase.
+     */
+    public MovieFullInfo() {
 
     }
 
     /**
      * constructor with three main parameters
-     * @param name        - cast name
-     * @param description cast description
-     * @param image       cast image
+     *
+     * @param name        - movie name
+     * @param description movie description
+     * @param image       movie image
+     * @param isFavorite  if movie add as favorite
      */
 
-    public MovieFullInfo(String name, String description, String image , boolean isFavorite) {
+    public MovieFullInfo(String name, String description, String image, boolean isFavorite) {
         this.name = name;
         this.description = description;
         this.image = image;
         this.isFavorite = isFavorite;
     }
+
+//    public String getCastId() {
+//        return castId;
+//    }
+
 
     /**
      * method return movie name
@@ -108,25 +114,6 @@ public class MovieFullInfo  {
     }
 
     /**
-     * get casts list
-     *
-     * @return List<CastFullInfo>
-     */
-    @NonNull
-    public List<CastFullInfo> getCasts() {
-        return casts;
-    }
-
-    /**
-     * add new cast in Casts list
-     *
-     * @param cast cast which will be added
-     */
-    public void addCast(@NonNull CastFullInfo cast) {
-        casts.add(cast);
-    }
-
-    /**
      * add new comment
      *
      * @param comment comment with replace old comment
@@ -138,7 +125,8 @@ public class MovieFullInfo  {
     public boolean getIsFavorite() {
         return isFavorite;
     }
-    public void setFavorite(boolean isFavorite){
-        this.isFavorite=isFavorite;
+
+    public void setFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }

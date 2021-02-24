@@ -36,4 +36,8 @@
     <string name="image_show_movie">Image show movie</string>
     <string name="star">show is favorite this movie</string>
     <string name="star_add_movie">set is favorite movie</string>
+    <string name="add_cast">Add Cast</string>
+    <string name="choise_your_photo">choise your photo</string>
+    <string name="add_image">add image</string>
+    <string name="select_image_in_your_galery">select image in your galery</string>
 </resources>

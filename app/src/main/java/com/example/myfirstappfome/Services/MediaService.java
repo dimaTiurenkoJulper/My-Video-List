@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import androidx.core.app.NotificationCompat;
+
 /*
     public void click(View v) {
         Intent i=new Intent(this, MediaService.class);
@@ -24,7 +25,6 @@ import androidx.core.app.NotificationCompat;
         }
     }
  */
-
 public class MediaService extends Service {
     MediaPlayer player;
     ExecutorService exec = Executors.newSingleThreadExecutor();
@@ -43,11 +43,15 @@ public class MediaService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        exec.execute(new MusicTread(player, "myMusicThread"));
+        exec.execute(() -> player.start());
+        showNotification();
+        return START_STICKY;
+    }
+    private void showNotification(){
         Intent playIntent = new Intent(this, MediaService.class);
         PendingIntent StopIntent = PendingIntent.getService(this, 0,
                 playIntent, 0);
-        String NOTIFICATION_CHANNEL_ID = "com.example.simpleapp";
+        String NOTIFICATION_CHANNEL_ID = "notificChannel";
         Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setContentText("My Music")
                 .setPriority(NotificationCompat.PRIORITY_MIN)
@@ -56,12 +60,11 @@ public class MediaService extends Service {
                 .addAction(android.R.drawable.ic_media_pause, "Play", StopIntent)
                 .build();
         startForeground(1001, notification);
-        return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        exec.execute(new StopMusicThread(player, "time to Stop"));
+        exec.execute(() -> player.stop());
         exec.shutdown();
         stopForeground(true);
         stopSelf();

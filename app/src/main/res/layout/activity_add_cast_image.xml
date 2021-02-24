@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.AddMovie.AddImage">
+    tools:context=".ui.Casts.addcast.AddCastImage">
 
     <TextView
         android:layout_width="match_parent"
@@ -26,6 +26,6 @@
         android:id="@+id/action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="Confirm"
+        android:onClick="onClick"
         android:text="@string/add_image" />
 </LinearLayout>

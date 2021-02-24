@@ -1,4 +1,4 @@
-package com.example.myfirstappfome;
+package com.example.myfirstappfome.ui.AddMovie;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.myfirstappfome.DataClasses.MovieFullInfo;
+import com.example.myfirstappfome.MainScreen;
+import com.example.myfirstappfome.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,7 +30,7 @@ public class AddImage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_image);
-       //ImageView imageView = findViewById(R.id.addImage);
+        //ImageView imageView = findViewById(R.id.addImage);
 
     }
 
@@ -52,6 +54,8 @@ public class AddImage extends AppCompatActivity {
                     final ImageView image = findViewById(R.id.addImage);
                     image.setImageBitmap(selectedImage);
                     saveInStorage(selectedImage);
+                    Intent intent = new Intent(this, MainScreen.class);
+                    startActivity(intent);
                 } catch (Throwable e) {
                     e.printStackTrace();
                 }
@@ -64,7 +68,7 @@ public class AddImage extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-        StorageReference storageRef = storage.getReference().child("Images/myImage"+getIntent().getStringExtra("name")+ ".jpg");
+        StorageReference storageRef = storage.getReference().child("Images/" + getIntent().getStringExtra("name") + "/" + "mainImage.jpg");
         // StorageReference imagesRef = storageRef.child("images");
         UploadTask uploadTask = storageRef.putBytes(data);
         uploadTask.addOnFailureListener(exception -> {
@@ -75,7 +79,7 @@ public class AddImage extends AppCompatActivity {
             MovieFullInfo saveMovie = new MovieFullInfo(getIntent().getStringExtra("name"),
                     getIntent().getStringExtra("description"),
                     taskSnapshot.getMetadata().getPath(),
-                    getIntent().getBooleanExtra("favorite",false));
+                    getIntent().getBooleanExtra("favorite", false));
             if (getIntent().getStringExtra("comment") != null && !Objects.equals(getIntent().getStringExtra("comment"), "")) {
                 saveMovie.addComment(getIntent().getStringExtra("comment"));
             }
@@ -83,7 +87,5 @@ public class AddImage extends AppCompatActivity {
 
             // ...
         });
-        //Intent intent = new Intent(this, MainScreen.class);
-        // startActivity(intent);
     }
 }

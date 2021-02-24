@@ -12,10 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddImage" />
-        <activity android:name=".CastInfo" />
-        <activity android:name=".CastsActivity" />
-        <activity android:name=".MovieInfo" />
+        <activity android:name=".ui.Casts.addcast.AddCastImage" />
+        <activity android:name=".ui.Casts.addcast.AddCast" />
+        <activity android:name=".ui.AddMovie.AddImage" />
+        <activity android:name=".ui.Casts.CastInfo" />
+        <activity android:name=".ui.Casts.CastsActivity" />
+        <activity android:name=".ui.MovieInfo" />
 
         <service
             android:name=".Services.MediaService"

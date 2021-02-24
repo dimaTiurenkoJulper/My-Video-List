@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myfirstappfome.Adapters.MoviesAdapter;
-import com.example.myfirstappfome.DataClasses.MyMovie;
-import com.example.myfirstappfome.MovieInfo;
-import com.example.myfirstappfome.Movies;
+import com.example.myfirstappfome.DataClasses.MovieFullInfo;
+import com.example.myfirstappfome.DataClasses.Movies;
 import com.example.myfirstappfome.R;
+import com.example.myfirstappfome.ui.MovieInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +44,9 @@ public class FavoriteFragment extends Fragment {
         return view;
     }
 
-    private List<MyMovie> getFavoriteList() {
-        ArrayList<MyMovie> favoriteList = new ArrayList<>();
-        for (MyMovie movie : Movies.getInstance().getList()) {
+    private List<MovieFullInfo> getFavoriteList() {
+        ArrayList<MovieFullInfo> favoriteList = new ArrayList<>();
+        for (MovieFullInfo movie : Movies.getInstance().getList()) {
             if (movie.getIsFavorite()) {
                 favoriteList.add(movie);
             }

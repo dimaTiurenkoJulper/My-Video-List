@@ -1,15 +1,18 @@
-package com.example.myfirstappfome;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.myfirstappfome.ui.Casts;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.myfirstappfome.DataClasses.CastFullInfo;
-import com.example.myfirstappfome.DataClasses.MovieFullInfo;
+import com.example.myfirstappfome.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /***
  * Activity , which show information about Cast
@@ -33,6 +36,8 @@ public class CastInfo extends AppCompatActivity {
         //String description  = getIntent().getStringExtra("Description");
         textDescription.setText(cast.getDescription());
         //int imag = Objects.requireNonNull(getIntent().getExtras()).getInt("Image");
-        image.setImageBitmap(cast.getImage());
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        storageRef.child(cast.getImage()).getDownloadUrl().addOnSuccessListener(uri -> Glide.with(this).load(uri).into(image)
+        );
     }
 }

@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.myfirstappfome.ClickProcess;
-import com.example.myfirstappfome.DataClasses.MyMovie;
+import com.example.myfirstappfome.DataClasses.MovieFullInfo;
 import com.example.myfirstappfome.R;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,11 +26,11 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
     private LayoutInflater inflater;
-    private ArrayList<MyMovie> movies;
-    private ClickProcess<View, MyMovie> clickAction;
+    private ArrayList<MovieFullInfo> movies;
+    private ClickProcess<View, MovieFullInfo> clickAction;
     private Context context ;
 
-    public MoviesAdapter(Context context, List<MyMovie> movies, ClickProcess<View, MyMovie> clickAction) {
+    public MoviesAdapter(Context context, List<MovieFullInfo> movies, ClickProcess<View, MovieFullInfo> clickAction) {
         this.movies = new ArrayList<>(movies);
         this.inflater = LayoutInflater.from(context);
         this.clickAction = clickAction;
@@ -49,7 +48,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
      * method add movie in RecycleView
      * @param movie item , which will be added in recycle View
      */
-    public void addItem(MyMovie movie) {
+    public void addItem(MovieFullInfo movie) {
         movies.add(movie);
         notifyItemInserted(movies.size() - 1);
 
@@ -57,7 +56,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(MoviesAdapter.ViewHolder holder, int position) {
-        final MyMovie myMovie = movies.get(position);
+        final MovieFullInfo myMovie = movies.get(position);
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
         storageRef.child(myMovie.getImage()).getDownloadUrl().addOnSuccessListener(uri -> Glide.with(context).load(uri).into(holder.imageView))

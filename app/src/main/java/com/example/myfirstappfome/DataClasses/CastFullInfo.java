@@ -1,28 +1,33 @@
 package com.example.myfirstappfome.DataClasses;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
 
 /***
  * this class get all information about cast .
  */
 public class CastFullInfo implements Serializable {
+    private String movieName;
     private String name;
     private String comment;
     private String description;
-    private Bitmap image;
+    private String image;
+
+    /***
+     * constructor for firebase realtime database
+     */
+    public CastFullInfo() {
+
+    }
 
     /***
      * constructor with three main parameters
      * @param name - cast name
      * @param description cast description
-     * @param image cast image
      */
-    public CastFullInfo(String name, String description, Bitmap image) {
+    public CastFullInfo(String movieName, String name, String description) {
         this.name = name;
+        this.movieName = movieName;
         this.description = description;
-        this.image = image;
     }
 
     /***
@@ -39,24 +44,6 @@ public class CastFullInfo implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * get comment to cast
-     *
-     * @return String
-     */
-    public String getComment() {
-        return this.comment;
-    }
-
-    /**
-     * set new comment to the cast
-     *
-     * @param comment value , which will change old comment
-     */
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     /**
@@ -82,7 +69,7 @@ public class CastFullInfo implements Serializable {
      *
      * @return Bitmap
      */
-    public Bitmap getImage() {
+    public String getImage() {
         return this.image;
     }
 
@@ -91,16 +78,7 @@ public class CastFullInfo implements Serializable {
      *
      * @param image - new value for cast image
      */
-    public void setImage(Bitmap image) {
+    public void setImage(String image) {
         this.image = image;
-    }
-
-    /**
-     * add new comment
-     *
-     * @param comment
-     */
-    public void addComment(String comment) {
-        this.comment = comment;
     }
 }

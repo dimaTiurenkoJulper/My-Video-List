@@ -1,4 +1,4 @@
-package com.example.myfirstappfome.ui.gallery;
+package com.example.myfirstappfome.ui.AddMovie;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.myfirstappfome.AddImage;
 import com.example.myfirstappfome.R;
 
 import androidx.annotation.NonNull;
